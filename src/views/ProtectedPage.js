@@ -1,32 +1,36 @@
-/*
- * Manuel Pizano
- * Copyright (c) 2022.
- */
-
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import useAxios from "../utils/useAxios";
+import { Spinner } from "reactstrap";
 
 function ProtectedPage() {
-    const [res, setRes] = useState("");
-    const api = useAxios();
+  const [res, setRes] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  const api = useAxios();
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await api.get("/test/");
-                setRes(response.data.response);
-            } catch {
-                setRes("Something went wrong");
-            }
-        };
-        fetchData();
-    }, []);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await api.get("/test/");
+        setRes(response.data.response);
+        setLoading(false);
+      } catch (error) {
+        setError(error.message);
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, [api]);
 
-    return (
-        <div>
+  if (loading) {
+    return <Spinner color="primary" />;
+  }
 
-        </div>
-    );
+  if (error) {
+    return <div>{error}</div>;
+  }
+
+  return <div>{res}</div>;
 }
 
 export default ProtectedPage;

@@ -3,10 +3,13 @@
  * Copyright (c) 2022.
  */
 
-function UserInfo({user}) {
+function UserInfo({user = {}}) {
+    const {username} = user;
     return (
         <div>
-            <h1 className="d-flex justify-content-center">Hola, {user.username}</h1>
+            <h1 className="d-flex justify-content-center">
+                Hola, {username || "invitado"}
+            </h1>
         </div>
     );
 }

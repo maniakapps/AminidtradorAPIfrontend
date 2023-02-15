@@ -4,14 +4,15 @@
  */
 
 import React, {Fragment} from 'react';
-import Home from "../Home/Home";
+import HomeScreen from "../Home/HomeScreen";
 
 
-export default function Dashboard() {
-    return (
-        <Fragment>
-            <meta name="viewport" content="initial-scale=1, width=device-width"/>
-            <Home/>
-        </Fragment>
-    );
-}
+const Dashboard = () => {
+  return (
+    <Fragment>
+      <HomeScreen />
+    </Fragment>
+  );
+};
+
+export default Dashboard;

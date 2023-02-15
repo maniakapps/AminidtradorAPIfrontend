@@ -12,7 +12,7 @@ import axios from "axios";
 
 import {API_URL} from "../../constants";
 
-class Home extends Component {
+class HomeScreen extends Component {
     state = {
         companies: []
     };
@@ -57,4 +57,4 @@ class Home extends Component {
     }
 }
 
-export default Home;
+export default HomeScreen;
